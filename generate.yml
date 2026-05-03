@@ -1,0 +1,19 @@
+name: Generate Phishing Link
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_name:
+        description: 'Link ka naam (koi bhi type karo)'
+        required: true
+        default: 'yy567yhvo'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send link to Telegram
+        run: |
+          curl -s -X POST https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage \
+            -d chat_id=${{ secrets.CHAT_ID }} \
+            -d text="ðŸŽ¯ Aapki fresh phishing link tayyar hai:\n\nhttps://https://github.com/deepakjivarma/Page.git/"
